@@ -29,7 +29,7 @@ def register_handlers(bot : AsyncTeleBot):
         text = (
             f"*Еще раз привет, {utils.get_full_user_name(message)}\!*\n"
             "Этот бот показывает рандомные изображения и шутки по введенным ключевым словам\.\n"
-            "Есть мемы по тематикам\: коты, работа, дети\n"
+            "Есть мемы по тематикам\: коты, работа, программирование\n"
             "А также\: шутки и приколы"
         )
 
@@ -37,16 +37,24 @@ def register_handlers(bot : AsyncTeleBot):
 
     @bot.message_handler()
     async def send_mem_image(message : Message) -> None:
-        if (message.text.find("кот") != -1):
+        lower_text = message.text.lower()
+
+        if (lower_text.find("кот") != -1):
             random_image_path = random.choice(bot_data.cat_mem_paths)
             image = Image.open(random_image_path)
 
             await bot.send_photo(message.chat.id, image)
-        elif (message.text.find("работ") != -1):
-            pass
-        elif (message.text.find("дет") != -1):
-            pass
-        elif (message.text.find("шутка") != -1 or message.text.find("прикол") != -1):    
+        elif (lower_text.find("работ") != -1):
+            random_image_path = random.choice(bot_data.work_mem_paths)
+            image = Image.open(random_image_path)
+
+            await bot.send_photo(message.chat.id, image)
+        elif (lower_text.find("программирован") != -1):
+            random_image_path = random.choice(bot_data.it_mem_paths)
+            image = Image.open(random_image_path)
+
+            await bot.send_photo(message.chat.id, image)
+        elif (lower_text.find("шутк") != -1 or lower_text.find("прикол") != -1):    
             random_joke = random.choice(bot_data.jokes)
 
             await bot.send_message(message.chat.id, random_joke)
@@ -54,4 +62,3 @@ def register_handlers(bot : AsyncTeleBot):
             text = "Такой категории не было найдено :("
 
             await bot.send_message(message.chat.id, text)
-
