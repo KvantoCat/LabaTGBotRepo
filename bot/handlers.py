@@ -13,7 +13,7 @@ def register_handlers(bot : AsyncTeleBot):
         text = (
             f":green_circle:  *{utils.get_full_user_name(message)}, добро пожаловать в мем\-бота\!*  :green_circle:\n\n"
             "Здесь собраны лучшие __мемы и шутки__ на все случаи жизни\.\n"
-            "Введите \"Мемы про работу\"\, \"Милые котики\"\, \"Смешные дети\" или \"Самая крутая шутка в мире\"\n\n"
+            "Введите \"Мемы про работу\"\, \"Милые котики\"\, \"Программирование\" или \"Самая крутая шутка в мире\"\n\n"
             "Доступные команды\:\n"
             "/start  Запустить бота\n"
             "/help   Помощь\n\n"
@@ -36,7 +36,7 @@ def register_handlers(bot : AsyncTeleBot):
         await bot.send_message(message.chat.id, text, parse_mode="MarkdownV2")
 
     @bot.message_handler()
-    async def send_mem_image(message : Message) -> None:
+    async def send_mem(message : Message) -> None:
         lower_text = message.text.lower()
 
         if (lower_text.find("кот") != -1):

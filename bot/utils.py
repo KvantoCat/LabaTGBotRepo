@@ -7,5 +7,5 @@ def get_full_user_name(message : Message) -> str:
 
     return full_name
 
-def get_sulution_dir():
+def get_sulution_dir() -> Path:
     return Path(__file__).resolve().parent.parent

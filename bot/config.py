@@ -15,7 +15,7 @@ class Config:
             BotCommand("help", "Помощь")
         ]
 
-    async def set_bot_commands(self, bot : AsyncTeleBot):
+    async def set_bot_commands(self, bot : AsyncTeleBot) -> None:
         await bot.set_my_commands(self.commands)
 
 bot_config = Config()

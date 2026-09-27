@@ -5,7 +5,7 @@ from bot.config import bot_config
 import asyncio
 import logging
 
-async def main():
+async def main() -> None:
     logging.basicConfig(level=logging.INFO)
 
     bot = AsyncTeleBot(bot_config.bot_token)
